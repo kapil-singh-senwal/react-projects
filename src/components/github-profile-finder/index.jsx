@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import User from "./user";
 import classes from './index.module.css'
 
@@ -8,7 +8,7 @@ export default function GithubProfileFinder() {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchGithubUserData = useCallback(async () => {
+  async function fetchGithubUserData() {
     setLoading(true);
     const response = await fetch(`https://api.github.com/users/${userName}`);
 
@@ -19,17 +19,29 @@ export default function GithubProfileFinder() {
       console.log(data);
       setUserName("");
     }
-  }, [userName]);
-
-  function handleSubmit() {
-    fetchGithubUserData();
   }
 
+  function handleSubmit() {
+    if (userName.trim() !== "") {
+      fetchGithubUserData();
+    }
+  }
 
   useEffect(() => {
+    // Initial fetch
+    const initialFetch = async () => {
+      setLoading(true);
+      const response = await fetch(`https://api.github.com/users/kapil-singh-senwal`);
+      const data = await response.json();
+      if (data) {
+        setUserData(data);
+        setLoading(false);
+      }
+    };
     
-    fetchGithubUserData();
-  }, [fetchGithubUserData]);
+    initialFetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (loading) {
     return <h1 className={classes.loading}>Loading data please wait... </h1>;

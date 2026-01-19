@@ -1,41 +1,27 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import classes from './index.module.css'
 
 export default function ScrollIndicator({ url }) {
-  const [data, setdata] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const containerRef = useRef(null);
 
-  async function fetchData(getUrl) {
-    try {
-      setLoading(true);
-      const response = await fetch(getUrl);
-      const data = await response.json();
-      if (data && data.products && data.products.length > 0) {
-        setdata(data.products);
-        setLoading(false);
-      }
-    } catch (e) {
-      setLoading(false);
-      setErrorMessage(e.message);
-    }
-  }
-
-  function handleScrollPercentage() {
+  const handleScrollPercentage = useCallback(() => {
     if (!containerRef.current) return;
 
     const element = containerRef.current;
     const { top, height } = element.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
 
-    // Start calculating when the top of the container hits the top of viewport
-    // End calculation when the bottom of the container hits the bottom of viewport
-    // Progress = (distance scrolled past top) / (total height - viewport height)
-    
     const scrolledPastTop = -top;
     const scrollableDistance = height - viewportHeight;
+
+    if (scrollableDistance <= 0) {
+      setScrollPercentage(top <= 0 ? 100 : 0);
+      return;
+    }
 
     if (scrolledPastTop <= 0) {
       setScrollPercentage(0);
@@ -44,9 +30,24 @@ export default function ScrollIndicator({ url }) {
     } else {
       setScrollPercentage((scrolledPastTop / scrollableDistance) * 100);
     }
-  }
+  }, []);
 
   useEffect(() => {
+    async function fetchData(getUrl) {
+      try {
+        setLoading(true);
+        const response = await fetch(getUrl);
+        const result = await response.json();
+        if (result && result.products && result.products.length > 0) {
+          setData(result.products);
+          setLoading(false);
+        }
+      } catch (e) {
+        setLoading(false);
+        setErrorMessage(e.message);
+      }
+    }
+
     fetchData(url);
   }, [url]);
 
@@ -56,7 +57,7 @@ export default function ScrollIndicator({ url }) {
     return () => {
       window.removeEventListener("scroll", handleScrollPercentage);
     };
-  }, []);
+  }, [handleScrollPercentage]);
 
   if(errorMessage){
     return <div className={classes.error}>Error ! {errorMessage}</div>

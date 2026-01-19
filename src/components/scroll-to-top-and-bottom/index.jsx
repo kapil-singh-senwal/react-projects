@@ -4,18 +4,22 @@ import { useRef } from "react";
 
 export default function ScrollToTopAndBottom() {
   const { data, error, pending } = useFetch(
-    `https://dummyjson.com/products?limit=34`,
-    {}
+    `https://dummyjson.com/products?limit=34`
   );
-  const bottomRef = useRef(null);
-  const topRef = useRef(null);
+  const contentRef = useRef(null);
 
   function handleScrollToTop() {
-    topRef.current.scrollIntoView({ behavior: "smooth" });
+    contentRef.current.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }
 
   function handleScrollToBottom() {
-    bottomRef.current.scrollIntoView({ behavior: "smooth" });
+    contentRef.current.scrollTo({
+      top: contentRef.current.scrollHeight,
+      behavior: "smooth",
+    });
   }
 
   if (error) {
@@ -37,21 +41,21 @@ export default function ScrollToTopAndBottom() {
   return (
     <div className={classes.wrapper}>
       <div className={classes.scrollContainer}>
-        <div className={classes.header} ref={topRef}>
+        <div className={classes.header}>
           <h1>Scroll Feature</h1>
           <button className={classes.navBtn} onClick={handleScrollToBottom}>
             Go to Bottom ↓
           </button>
         </div>
 
-        <div className={classes.contentSection}>
+        <div className={classes.contentSection} ref={contentRef}>
           <h3 className={classes.sectionTitle}>Top Section</h3>
           <ul className={classes["data-list"]}>
             {data && data.products && data.products.length
               ? data.products.map((item, index) => <li key={index}>{item.title}</li>)
               : null}
           </ul>
-          <h3 className={classes.sectionTitle} ref={bottomRef}>
+          <h3 className={classes.sectionTitle}>
             Bottom Section
           </h3>
         </div>

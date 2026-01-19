@@ -3,8 +3,7 @@ import classes from './index.module.css'
 
 export default function UseFetchHookTest() {
   const { data, error, pending } = useFetch(
-    `https://dummyjson.com/products?limit=17`,
-    {}
+    `https://dummyjson.com/products?limit=17`
   );
 
   return (

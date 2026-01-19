@@ -17,9 +17,11 @@ export default function UseOnClickOutsideTest(){
                     <p>Click anywhere outside this box to close it. Clicking inside won't do anything!</p>
                 </div>
             ) : (
-                <button className={classes.triggerBtn} onClick={() => setShowContent(true)}>
-                    Show Content
-                </button>
+                <div className={classes.triggerWrapper}>
+                    <button className={classes.triggerBtn} onClick={() => setShowContent(true)}>
+                        Show Content
+                    </button>
+                </div>
             )
         }
     </div>

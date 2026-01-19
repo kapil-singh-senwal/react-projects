@@ -53,8 +53,8 @@ export default function SearchAutoComplete() {
 
   return (
     <div className={classes["search-autocomplete-container"]}>
-      <h2>Search AutoComplete</h2>
       <div className={classes.searchWrapper}>
+        <h2>Search AutoComplete</h2>
         <div className={classes["search-box"]}>
           {loading ? (
             <div className={classes.loading}>Loading data please wait...</div>

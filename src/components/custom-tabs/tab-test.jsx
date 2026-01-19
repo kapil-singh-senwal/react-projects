@@ -1,5 +1,4 @@
 import Tabs from "./tabs";
-import classes from './index.module.css'
 
 function RandomComponent(){
     return <h1>Some random component</h1>
