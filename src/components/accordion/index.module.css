@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.wrapper{
+    background-color: #2a2a2a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.multiSelectBtn{
+    color: #efefef;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    padding: 16px 32px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.multiSelectBtn:hover {
+    background-color: #222;
+    border-color: #0aacc9;
+    box-shadow: 0 6px 20px rgba(10, 172, 201, 0.2);
+}
+
+.multiSelectBtn.active {
+    background-color: #1a1a1a;
+    border-color: #0aacc9;
+    color: #0aacc9;
+    box-shadow: 0 0 15px rgba(10, 172, 201, 0.3);
+}
+
+.accordion{
+    max-width: 600px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.item{
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.item:hover {
+    border-color: #555;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.title{
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+}
+
+.title:hover {
+    background-color: #222;
+}
+
+.question{
+    font-size: 18px;
+    font-weight: 600;
+    color: #efefef;
+    margin: 0;
+    background: transparent;
+}
+
+.icon {
+    font-size: 24px;
+    color: #666;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.icon.expanded {
+    transform: rotate(45deg);
+    color: #ffffff;
+}
+
+.contentWrapper {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contentWrapper.open {
+    height: auto;
+}
+
+.content{
+    padding: 0 24px 20px 24px;
+    color: #ccc;
+    font-size: 16px;
+    line-height: 1.6;
+    background: transparent;
+}
