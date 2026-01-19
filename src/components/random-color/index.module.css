@@ -1,0 +1,55 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.btnContainer{
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.colorDisplay{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 24px;
+  gap: 20px;
+}
+
+.btnContainer button{
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* color: white; <-- Removed to allow dynamic styling from JSX */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.btnContainer button:hover {
+  background-color: rgba(0, 0, 0, 0.6); /* Darker on hover for contrast */
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.btnContainer button.active {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: black !important; /* Force black for active state visibility */
+  border-color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btnContainer button:active {
+  transform: translateY(0);
+}

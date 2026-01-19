@@ -1,0 +1,58 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #2a2a2a;
+}
+
+.modalContent {
+    width: 90%;
+    max-width: 450px;
+    padding: 40px;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #0aacc9;
+}
+
+.modalContent p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #efefef;
+    margin: 0;
+}
+
+.triggerBtn {
+    padding: 14px 32px;
+    background-color: #1a1a1a;
+    color: #0aacc9;
+    border: 1px solid #0aacc9;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(10, 172, 201, 0.15);
+}
+
+.triggerBtn:hover {
+    transform: translateY(-2px);
+    background-color: #0aacc9;
+    color: white;
+    box-shadow: 0 8px 25px rgba(10, 172, 201, 0.3);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

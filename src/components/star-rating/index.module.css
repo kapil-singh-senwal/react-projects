@@ -1,0 +1,19 @@
+
+.star-rating{
+    font-size: 30px;
+    cursor: pointer;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: transparent;
+}
+
+.active{
+    color: #fff700;
+}
+
+.inactive{
+    color: #000000;
+}

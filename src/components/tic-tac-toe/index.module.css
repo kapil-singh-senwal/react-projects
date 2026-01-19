@@ -1,0 +1,109 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #2a2a2a;
+}
+
+.gameContainer {
+    border: 1px solid #333;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.gameContainer h1 {
+    margin-bottom: 25px;
+    font-size: 32px;
+    color: #0aacc9;
+    font-weight: 700;
+}
+
+.tic-tac-toe-container {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 0;
+  width: fit-content;
+}
+
+.square {
+  border: 1px solid #333;
+  background-color: #1a1a1a;
+  font-size: 50px;
+  font-weight: bold;
+  color: #0aacc9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+}
+
+.square:nth-child(3n) { border-right: none; }
+.square:nth-child(n+7) { border-bottom: none; }
+.square:nth-child(3n-2) { border-left: none; }
+.square:nth-child(-n+3) { border-top: none; }
+
+.square:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+.square.highlight {
+  background-color: #0aacc9;
+  color: white;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+}
+
+.statusSection {
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+.statusSection h2 {
+    font-size: 20px;
+    color: #efefef;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.statusSection button {
+    padding: 12px 32px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: 1px solid #0aacc9;
+    background: transparent;
+    color: #0aacc9;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.statusSection button:hover {
+    background: #0aacc9;
+    color: white;
+    box-shadow: 0 0 20px rgba(10, 172, 201, 0.3);
+}
+
+@media (max-width: 480px) {
+  .tic-tac-toe-container {
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+  }
+  .square {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+  }
+}
